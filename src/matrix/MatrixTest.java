@@ -15,7 +15,7 @@ public class MatrixTest {
 		} catch (UnsupportedOperationException e) {
 			e.printStackTrace(System.out);
 		}
-		System.out.println("Testing Exception...");
+		System.out.println("Testing Exception in addition method...");
 		Matrix d = null;
 		try {
 			d = a.add(c);
@@ -23,7 +23,19 @@ public class MatrixTest {
 			e.printStackTrace(System.out);
 			System.out.println("Successfully caught exception.");
 		}
-		System.out.println(d);
+		System.out.println("Testing subtracting two matrices...");
+		try {
+			System.out.println(b.subtract(a));
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace(System.out);
+		}
+		System.out.println("Testing Exception in subtraction method...");
+		try {
+			d = a.subtract(c);
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace(System.out);
+			System.out.println("Successfully caught exception.");
+		}
 	}
 
 	public static void fillMatrix(Matrix a, int values) {

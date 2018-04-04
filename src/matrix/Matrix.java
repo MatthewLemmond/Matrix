@@ -56,6 +56,21 @@ public class Matrix {
 		}
 	}
 	
+	public Matrix subtract(Matrix other) throws UnsupportedOperationException {
+		if(getRows() == other.getRows() && getCols() == other.getCols()) {
+			Matrix temp = new Matrix(getRows(), getCols());
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					temp.setAtIndex(i, j, this.getAtIndex(i, j) - other.getAtIndex(i, j));
+				}
+			}
+			return temp;
+		}
+		else {
+			throw(new UnsupportedOperationException());
+		}
+	}
+	
 	public String toString() {
 		StringBuffer buf = new StringBuffer();
 		for(int i = 0; i < getRows(); i++) {
