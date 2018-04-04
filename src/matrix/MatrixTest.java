@@ -7,8 +7,23 @@ public class MatrixTest {
 		fillMatrix(a, 1);
 		Matrix b = new Matrix();
 		fillMatrix(b, 2);
+		Matrix c = new Matrix(2,2);
+		fillMatrix(c,2);
 		System.out.println("Testing adding two matrices...");
-		System.out.println(a.add(b));
+		try {
+			System.out.println(a.add(b));
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace(System.out);
+		}
+		System.out.println("Testing Exception...");
+		Matrix d = null;
+		try {
+			d = a.add(c);
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace(System.out);
+			System.out.println("Successfully caught exception.");
+		}
+		System.out.println(d);
 	}
 
 	public static void fillMatrix(Matrix a, int values) {

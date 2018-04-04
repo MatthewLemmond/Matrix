@@ -41,25 +41,19 @@ public class Matrix {
 		return this.matrix[row][col];
 	}
 	
-	public Matrix add(Matrix other) {
-		try {
-			if(getRows() == other.getRows() && getCols() == other.getCols()) {
-				Matrix temp = new Matrix(getRows(), getCols());
-				for(int i = 0; i < getRows(); i++) {
-					for(int j = 0; j < getCols(); j++) {
-						temp.setAtIndex(i, j, this.getAtIndex(i, j) + other.getAtIndex(i, j));
-					}
+	public Matrix add(Matrix other) throws UnsupportedOperationException {
+		if(getRows() == other.getRows() && getCols() == other.getCols()) {
+			Matrix temp = new Matrix(getRows(), getCols());
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					temp.setAtIndex(i, j, this.getAtIndex(i, j) + other.getAtIndex(i, j));
 				}
-				return temp;
 			}
-			else {
-				throw(new MatrixNotAddable());
-			}
+			return temp;
 		}
-		catch (MatrixNotAddable e) {
-			e.printMessage();
+		else {
+			throw(new UnsupportedOperationException());
 		}
-		return null;
 	}
 	
 	public String toString() {
@@ -68,11 +62,13 @@ public class Matrix {
 			buf.append("[");
 			for(int j = 0; j < getCols(); j++) {
 				buf.append(this.getAtIndex(i, j));
-				if(j != getCols() - 1) {
+				if(j != getCols() - 1)
 					buf.append(" ");
-				}
 			}
-			buf.append("]\n");
+			if(i != getRows() - 1)
+				buf.append("]\n");
+			else
+				buf.append("]");
 		}
 		return buf.toString();
 	}
