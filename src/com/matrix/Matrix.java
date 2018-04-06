@@ -1,4 +1,4 @@
-package matrix;
+package com.matrix;
 
 public class Matrix {
 	private int rows;
@@ -15,6 +15,28 @@ public class Matrix {
 		setRows(rows);
 		setCols(cols);
 		this.matrix = new int[getRows()][getCols()];
+	}
+	
+	public Matrix(int[][] array) {
+		setRows(array.length);
+		setCols(array[0].length);
+		this.matrix = new int[getRows()][getCols()];
+		for(int i = 0; i < getRows(); i++) {
+			for(int j = 0; j < getCols(); j++) {
+				setAtIndex(i, j, array[i][j]);
+			}
+		}
+	}
+	
+	public Matrix(Matrix other) {
+		setRows(other.getRows());
+		setCols(other.getCols());
+		this.matrix = new int[getRows()][getCols()];
+		for(int i = 0; i < getRows(); i++) {
+			for(int j = 0; j < getCols(); j++) {
+				setAtIndex(i, j, other.getAtIndex(i, j));
+			}
+		}
 	}
 
 	public int getRows() {
@@ -33,12 +55,23 @@ public class Matrix {
 		this.cols = cols;
 	}
 
-	public void setAtIndex(int row, int col, int value) {
-		this.matrix[row][col] = value;
+	public void setAtIndex(int row, int col, int value) throws IndexOutOfBoundsException {
+		if(row < getRows() && col < getCols())
+			this.matrix[row][col] = value;
+		else
+			throw(new IndexOutOfBoundsException("Index Out of Bounds"
+					+ "\nCheck that your values for row and col are correct"
+					+ " and try again."));
 	}
 
 	public int getAtIndex(int row, int col) {
-		return this.matrix[row][col];
+		if(row < getRows() && col < getCols())
+			return this.matrix[row][col];
+		else
+			throw(new IndexOutOfBoundsException("Index Out of Bounds"
+					+ "\nCheck that your values for row and col are correct"
+					+ " and try again."));
+		
 	}
 
 	public Matrix add(Matrix other) throws IllegalArgumentException {
