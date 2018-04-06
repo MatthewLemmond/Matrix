@@ -41,7 +41,7 @@ public class Matrix {
 		return this.matrix[row][col];
 	}
 
-	public Matrix add(Matrix other) throws UnsupportedOperationException {
+	public Matrix add(Matrix other) throws IllegalArgumentException {
 		if(getRows() == other.getRows() && getCols() == other.getCols()) {
 			Matrix temp = new Matrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
@@ -52,11 +52,13 @@ public class Matrix {
 			return temp;
 		}
 		else {
-			throw(new UnsupportedOperationException());
+			throw(new IllegalArgumentException("\nCannot add matrices with dimesnions of "
+					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ ".\nTry different matrices where all dimensions match."));
 		}
 	}
 
-	public Matrix subtract(Matrix other) throws UnsupportedOperationException {
+	public Matrix subtract(Matrix other) throws IllegalArgumentException {
 		if(getRows() == other.getRows() && getCols() == other.getCols()) {
 			Matrix temp = new Matrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
@@ -67,9 +69,31 @@ public class Matrix {
 			return temp;
 		}
 		else {
-			throw(new UnsupportedOperationException());
+			throw(new IllegalArgumentException("\nCannot subtract matrices with dimesnions of "
+					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ ".\nTry different matrices where all dimensions match."));
 		}
 	}
+	
+	public Matrix multiply(Matrix other) throws IllegalArgumentException {
+		if(getCols() == other.getRows()) {
+			Matrix temp = new Matrix(getRows(), other.getCols());
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < other.getCols(); j++) {
+					for(int k = 0; k < getCols(); k++) {
+						temp.setAtIndex(i, j, temp.getAtIndex(i, j) + (getAtIndex(i, k) * other.getAtIndex(k, j)));
+					}
+				}
+			}
+			return temp;
+		}
+		else {
+			throw(new IllegalArgumentException("\nCannot multiply matrices with dimesnions of "
+					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ ".\nTry different matrices where the columns of the first \nmatch the rows of the second."));
+		}
+	}
+
 
 	public int compareTo(Matrix other) {
 		int diff = 0;
