@@ -62,6 +62,12 @@ public interface MatrixInterface {
 	public Matrix multiply(Matrix other);
 	
 	/**
+	 * Transpose the calling matrix.
+	 * @return Matrix The resulting matrix after transposition.
+	 */
+	public Matrix transpose();
+	
+	/**
 	 * Compare two matrices together and return an integer to signify their difference.
 	 * @param other The matrix to compare against the calling matrix.
 	 * @return int The result of the comparison.

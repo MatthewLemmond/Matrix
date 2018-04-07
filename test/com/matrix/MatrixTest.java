@@ -19,6 +19,7 @@ public class MatrixTest {
 	public static Matrix oneMatrix;
 	public static Matrix twoMatrix;
 	public static Matrix aTimesB;
+	public static Matrix transposedC;
 	
 	@BeforeAll public static void initialize() throws InterruptedException {
 		diffRows = new Matrix(4,3);
@@ -47,6 +48,8 @@ public class MatrixTest {
 		twoMatrix = new Matrix(twoArr);
 		int[][] aTimesBArr = {{8,16,24},{14,28,42},{20,40,60}};
 		aTimesB = new Matrix(aTimesBArr);
+		int[][] transposedArr = {{10,11,12}};
+		transposedC = new Matrix(transposedArr);
 	}
 	
 	@Test public void constructorTest() {
@@ -151,6 +154,10 @@ public class MatrixTest {
 		assertEquals(("\nCannot multiply matrices with dimesnions of "
 				+ diffCols.getRows() + "x" + diffCols.getCols() + " and " + diffRows.getRows() + "x" + diffRows.getCols()
 				+ ".\nTry different matrices where the columns of the first \nmatch the rows of the second."), e.getMessage());
+	}
+	
+	@Test public void transposeTest() {
+		assertEquals(true, transposedC.equals(c.transpose()));
 	}
 	
 	@Test public void compareToTest() {

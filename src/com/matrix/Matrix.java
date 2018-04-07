@@ -148,6 +148,15 @@ public class Matrix implements MatrixInterface {
 		}
 	}
 
+	public Matrix transpose() {
+		Matrix temp = new Matrix(getCols(), getRows());
+		for(int i = 0; i < getCols(); i++) {
+			for(int j = 0; j < getRows(); j++) {
+				temp.setAtIndex(i, j, getAtIndex(j, i));
+			}
+		}
+		return temp;
+	}
 
 	public int compareTo(Matrix other) {
 		int diff = 0;
