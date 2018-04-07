@@ -1,25 +1,38 @@
 package com.matrix;
 
-public class Matrix {
+public class Matrix implements MatrixInterface {
 	private int rows;
 	private int cols;
 	private int[][] matrix;
 
+	/**
+	 * Initializes the Matrix to be 3x3 in size.
+	 */
 	public Matrix() {
-		setRows(3);
-		setCols(3);
+		this.rows = 3;
+		this.cols = 3;
 		this.matrix = new int[getRows()][getCols()];
 	}
 
+	/**
+	 * Initializes the Matrix to be (rows)x(cols) in size.
+	 * @param rows Number of rows in the matrix.
+	 * @param cols Number of cols in the matrix.
+	 */
 	public Matrix(int rows, int cols) {
-		setRows(rows);
-		setCols(cols);
+		this.rows = rows;
+		this.cols = cols;
 		this.matrix = new int[getRows()][getCols()];
 	}
 	
+	/**
+	 * Initialize the Matrix to be the same size as the array
+	 * then copies over the contents of the array into the matrix.
+	 * @param array Array to be copied into the Matrix.
+	 */
 	public Matrix(int[][] array) {
-		setRows(array.length);
-		setCols(array[0].length);
+		rows = array.length;
+		cols = array[0].length;
 		this.matrix = new int[getRows()][getCols()];
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
@@ -28,9 +41,15 @@ public class Matrix {
 		}
 	}
 	
+	/**
+	 * Copy-Constructor.
+	 * Takes the Matrix from the argument and copies the contents
+	 * into the current Matrix.
+	 * @param other Matrix to be copied.
+	 */
 	public Matrix(Matrix other) {
-		setRows(other.getRows());
-		setCols(other.getCols());
+		rows = other.getRows();
+		cols = other.getCols();
 		this.matrix = new int[getRows()][getCols()];
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
@@ -45,14 +64,6 @@ public class Matrix {
 
 	public int getCols() {
 		return this.cols;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public void setCols(int cols) {
-		this.cols = cols;
 	}
 
 	public void setAtIndex(int row, int col, int value) throws IndexOutOfBoundsException {
@@ -106,6 +117,16 @@ public class Matrix {
 					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
 					+ ".\nTry different matrices where all dimensions match."));
 		}
+	}
+	
+	public Matrix multiply(int value) {
+		Matrix temp = new Matrix(this);
+		for(int i = 0; i < getRows(); i++) {
+			for(int j = 0; j < getCols(); j++) {
+				temp.setAtIndex(i, j, getAtIndex(i, j) * value);
+			}
+		}
+		return temp;
 	}
 	
 	public Matrix multiply(Matrix other) throws IllegalArgumentException {

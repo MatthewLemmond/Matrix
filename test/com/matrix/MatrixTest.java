@@ -17,6 +17,7 @@ public class MatrixTest {
 	public static Matrix diffCols;
 	public static Matrix zeroMatrix;
 	public static Matrix oneMatrix;
+	public static Matrix twoMatrix;
 	public static Matrix aTimesB;
 	
 	@BeforeAll public static void initialize() throws InterruptedException {
@@ -42,6 +43,8 @@ public class MatrixTest {
 		zeroMatrix = new Matrix(zeroArr);
 		int[][] oneArr = {{1,1,1},{1,1,1},{1,1,1}};
 		oneMatrix = new Matrix(oneArr);
+		int[][] twoArr = {{2,2,2},{2,2,2},{2,2,2}};
+		twoMatrix = new Matrix(twoArr);
 		int[][] aTimesBArr = {{8,16,24},{14,28,42},{20,40,60}};
 		aTimesB = new Matrix(aTimesBArr);
 	}
@@ -133,6 +136,10 @@ public class MatrixTest {
 		assertEquals(("\nCannot subtract matrices with dimesnions of "
 					+ c.getRows() + "x" + c.getCols() + " and " + diffRows.getRows() + "x" + diffRows.getCols()
 					+ ".\nTry different matrices where all dimensions match."), e.getMessage());
+	}
+	
+	@Test public void scalarMultiplicationTest() {
+		assertEquals(true, oneMatrix.multiply(2).equals(twoMatrix));
 	}
 	
 	@Test public void multiplyTest() {
