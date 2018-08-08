@@ -1,6 +1,10 @@
 package com.matrix;
 
-public class Matrix implements MatrixInterface {
+/**
+ * Implementation of the MatrixInterface using integer values within the matrix itself.
+ * @author Matthew Lemmond
+ */
+public class IntegerMatrix implements MatrixInterface {
 	private int rows;
 	private int cols;
 	private int[][] matrix;
@@ -8,7 +12,7 @@ public class Matrix implements MatrixInterface {
 	/**
 	 * Initializes the Matrix to be 3x3 in size.
 	 */
-	public Matrix() {
+	public IntegerMatrix() {
 		this.rows = 3;
 		this.cols = 3;
 		this.matrix = new int[getRows()][getCols()];
@@ -19,7 +23,7 @@ public class Matrix implements MatrixInterface {
 	 * @param rows Number of rows in the matrix.
 	 * @param cols Number of cols in the matrix.
 	 */
-	public Matrix(int rows, int cols) {
+	public IntegerMatrix(int rows, int cols) {
 		this.rows = rows;
 		this.cols = cols;
 		this.matrix = new int[getRows()][getCols()];
@@ -30,7 +34,7 @@ public class Matrix implements MatrixInterface {
 	 * then copies over the contents of the array into the matrix.
 	 * @param array Array to be copied into the Matrix.
 	 */
-	public Matrix(int[][] array) {
+	public IntegerMatrix(int[][] array) {
 		rows = array.length;
 		cols = array[0].length;
 		this.matrix = new int[getRows()][getCols()];
@@ -46,7 +50,7 @@ public class Matrix implements MatrixInterface {
 	 * Takes the Matrix from the argument and make a deep copy of the contents.
 	 * @param arg0 Matrix to be copied.
 	 */
-	public Matrix(Matrix arg0) {
+	public IntegerMatrix(IntegerMatrix arg0) {
 		rows = arg0.getRows();
 		cols = arg0.getCols();
 		this.matrix = new int[getRows()][getCols()];
@@ -84,9 +88,9 @@ public class Matrix implements MatrixInterface {
 		
 	}
 
-	public Matrix add(Matrix arg0) throws IllegalArgumentException {
+	public IntegerMatrix add(IntegerMatrix arg0) throws IllegalArgumentException {
 		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
-			Matrix temp = new Matrix(getRows(), getCols());
+			IntegerMatrix temp = new IntegerMatrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < getCols(); j++) {
 					temp.setAtIndex(i, j, this.getAtIndex(i, j) + arg0.getAtIndex(i, j));
@@ -101,9 +105,9 @@ public class Matrix implements MatrixInterface {
 		}
 	}
 
-	public Matrix subtract(Matrix arg0) throws IllegalArgumentException {
+	public IntegerMatrix subtract(IntegerMatrix arg0) throws IllegalArgumentException {
 		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
-			Matrix temp = new Matrix(getRows(), getCols());
+			IntegerMatrix temp = new IntegerMatrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < getCols(); j++) {
 					temp.setAtIndex(i, j, this.getAtIndex(i, j) - arg0.getAtIndex(i, j));
@@ -118,8 +122,8 @@ public class Matrix implements MatrixInterface {
 		}
 	}
 	
-	public Matrix multiply(int scalar) {
-		Matrix temp = new Matrix(this);
+	public IntegerMatrix multiply(int scalar) {
+		IntegerMatrix temp = new IntegerMatrix(this);
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
 				temp.setAtIndex(i, j, getAtIndex(i, j) * scalar);
@@ -128,9 +132,9 @@ public class Matrix implements MatrixInterface {
 		return temp;
 	}
 	
-	public Matrix multiply(Matrix arg0) throws IllegalArgumentException {
+	public IntegerMatrix multiply(IntegerMatrix arg0) throws IllegalArgumentException {
 		if(getCols() == arg0.getRows()) {
-			Matrix temp = new Matrix(getRows(), arg0.getCols());
+			IntegerMatrix temp = new IntegerMatrix(getRows(), arg0.getCols());
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < arg0.getCols(); j++) {
 					for(int k = 0; k < getCols(); k++) {
@@ -147,8 +151,8 @@ public class Matrix implements MatrixInterface {
 		}
 	}
 
-	public Matrix transpose() {
-		Matrix temp = new Matrix(getCols(), getRows());
+	public IntegerMatrix transpose() {
+		IntegerMatrix temp = new IntegerMatrix(getCols(), getRows());
 		for(int i = 0; i < getCols(); i++) {
 			for(int j = 0; j < getRows(); j++) {
 				temp.setAtIndex(i, j, getAtIndex(j, i));
@@ -157,7 +161,7 @@ public class Matrix implements MatrixInterface {
 		return temp;
 	}
 
-	public int compareTo(Matrix arg0) {
+	public int compareTo(IntegerMatrix arg0) {
 		int diff = 0;
 		if(getRows() != arg0.getRows())
 			return Integer.MIN_VALUE;
@@ -173,7 +177,7 @@ public class Matrix implements MatrixInterface {
 		return diff;
 	}
 
-	public boolean equals(Matrix arg0) {
+	public boolean equals(IntegerMatrix arg0) {
 		if(getRows() != arg0.getRows() && getCols() != arg0.getCols())
 			return false;
 		for(int i = 0; i < getRows(); i++) {

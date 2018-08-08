@@ -36,7 +36,7 @@ public interface MatrixInterface {
 	 * @param other The matrix to add to the calling matrix.
 	 * @return Matrix The resulting matrix after the addition.
 	 */
-	public Matrix add(Matrix other);
+	public IntegerMatrix add(IntegerMatrix other);
 	
 	/**
 	 * Subtract one matrix from the other.
@@ -44,14 +44,14 @@ public interface MatrixInterface {
 	 * @param other The matrix to subtract from the calling matrix.
 	 * @return Matrix The resulting matrix after the subtraction.
 	 */
-	public Matrix subtract(Matrix other);
+	public IntegerMatrix subtract(IntegerMatrix other);
 	
 	/**
 	 * Multiply the contents of the calling matrix by the value passed in.
 	 * @param value Value to scale the contents of the matrix by.
 	 * @return Matrix The resulting matrix after the scaling.
 	 */
-	public Matrix multiply(int value);
+	public IntegerMatrix multiply(int value);
 	
 	/**
 	 * Multiply two matrices together.
@@ -59,27 +59,27 @@ public interface MatrixInterface {
 	 * @param other The matrix to multiply to the calling matrix.
 	 * @return Matrix The resulting matrix after the multiplication.
 	 */
-	public Matrix multiply(Matrix other);
+	public IntegerMatrix multiply(IntegerMatrix other);
 	
 	/**
 	 * Transpose the calling matrix.
 	 * @return Matrix The resulting matrix after transposition.
 	 */
-	public Matrix transpose();
+	public IntegerMatrix transpose();
 	
 	/**
 	 * Compare two matrices together and return an integer to signify their difference.
 	 * @param other The matrix to compare against the calling matrix.
 	 * @return int The result of the comparison.
 	 */
-	public int compareTo(Matrix other);
+	public int compareTo(IntegerMatrix other);
 	
 	/**
 	 * Determine if two matrices are equal to one another.
 	 * @param other The matrix to check equality against the calling matrix.
 	 * @return boolean True or false depending on the equality of the matrices.
 	 */
-	public boolean equals(Matrix other);
+	public boolean equals(IntegerMatrix other);
 	
 	/**
 	 * @return String A textual representation of the matrix.

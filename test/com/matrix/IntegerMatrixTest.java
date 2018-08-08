@@ -5,28 +5,28 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class MatrixTest {
+public class IntegerMatrixTest {
 	
-	private Matrix constructorTester;
-	private Matrix setAtIndexTester;
-	public static Matrix a;
-	public static Matrix b;
-	public static Matrix c;
-	public static Matrix d;
-	public static Matrix diffRows;
-	public static Matrix diffCols;
-	public static Matrix zeroMatrix;
-	public static Matrix oneMatrix;
-	public static Matrix twoMatrix;
-	public static Matrix aTimesB;
-	public static Matrix transposedC;
+	private IntegerMatrix constructorTester;
+	private IntegerMatrix setAtIndexTester;
+	public static IntegerMatrix a;
+	public static IntegerMatrix b;
+	public static IntegerMatrix c;
+	public static IntegerMatrix d;
+	public static IntegerMatrix diffRows;
+	public static IntegerMatrix diffCols;
+	public static IntegerMatrix zeroMatrix;
+	public static IntegerMatrix oneMatrix;
+	public static IntegerMatrix twoMatrix;
+	public static IntegerMatrix aTimesB;
+	public static IntegerMatrix transposedC;
 	
 	@BeforeAll public static void initialize() throws InterruptedException {
-		diffRows = new Matrix(4,3);
-		diffCols = new Matrix(3,5);
-		a = new Matrix();
-		b = new Matrix();
-		c = new Matrix(3,1);
+		diffRows = new IntegerMatrix(4,3);
+		diffCols = new IntegerMatrix(3,5);
+		a = new IntegerMatrix();
+		b = new IntegerMatrix();
+		c = new IntegerMatrix(3,1);
 		for(int i = 0; i < a.getRows(); i++) {
 			for(int j = 0; j < b.getRows(); j++) {
 				a.setAtIndex(i, j, i + j);
@@ -39,41 +39,41 @@ public class MatrixTest {
 			}
 		}
 		int[][] tmp = {{1,3,5},{3,6,9},{5,9,13}};
-		d = new Matrix(tmp);
+		d = new IntegerMatrix(tmp);
 		int[][] zeroArr = {{0,0,0},{0,0,0},{0,0,0}};
-		zeroMatrix = new Matrix(zeroArr);
+		zeroMatrix = new IntegerMatrix(zeroArr);
 		int[][] oneArr = {{1,1,1},{1,1,1},{1,1,1}};
-		oneMatrix = new Matrix(oneArr);
+		oneMatrix = new IntegerMatrix(oneArr);
 		int[][] twoArr = {{2,2,2},{2,2,2},{2,2,2}};
-		twoMatrix = new Matrix(twoArr);
+		twoMatrix = new IntegerMatrix(twoArr);
 		int[][] aTimesBArr = {{8,16,24},{14,28,42},{20,40,60}};
-		aTimesB = new Matrix(aTimesBArr);
+		aTimesB = new IntegerMatrix(aTimesBArr);
 		int[][] transposedArr = {{10,11,12}};
-		transposedC = new Matrix(transposedArr);
+		transposedC = new IntegerMatrix(transposedArr);
 	}
 	
 	@Test public void constructorTest() {
-		constructorTester = new Matrix();
+		constructorTester = new IntegerMatrix();
 		assertEquals(3, constructorTester.getRows());
 		assertEquals(3, constructorTester.getCols());
 	}
 	
 	@Test public void constructorWithIntegerArgumentsTest() {
-		constructorTester = new Matrix(2,2);
+		constructorTester = new IntegerMatrix(2,2);
 		assertEquals(2, constructorTester.getRows());
 		assertEquals(2, constructorTester.getCols());
 	}
 	
 	@Test public void constructorWithArrayArgumentTest() {
 		int[][] arr = {{1,2,3},{4,5,6}};
-		constructorTester = new Matrix(arr);
+		constructorTester = new IntegerMatrix(arr);
 		assertEquals(constructorTester.getRows(), 2);
 		assertEquals(constructorTester.getCols(), 3);
 		assertEquals(constructorTester.getAtIndex(0, 0), 1);
 	}
 	
 	@Test public void constructorWithMatrixArgumentTest() {
-		constructorTester = new Matrix(c);
+		constructorTester = new IntegerMatrix(c);
 		assertEquals(3, constructorTester.getRows());
 		assertEquals(1, constructorTester.getCols());
 		assertEquals(10, constructorTester.getAtIndex(0, 0));
@@ -95,7 +95,7 @@ public class MatrixTest {
 	}
 	
 	@Test public void setAtIndexTest() {
-		setAtIndexTester = new Matrix();
+		setAtIndexTester = new IntegerMatrix();
 		setAtIndexTester.setAtIndex(0, 0, 1);
 		assertEquals(setAtIndexTester.getAtIndex(0, 0), 1);
 	}
@@ -171,7 +171,7 @@ public class MatrixTest {
 		assertEquals(false, a.equals(diffRows));
 		assertEquals(false, a.equals(diffCols));
 		assertEquals(false, a.equals(b));
-		assertEquals(false, a.equals(new Matrix(5,5)));
+		assertEquals(false, a.equals(new IntegerMatrix(5,5)));
 		assertEquals(true, a.equals(a));
 	}
 	
