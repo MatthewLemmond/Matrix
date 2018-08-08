@@ -43,17 +43,16 @@ public class Matrix implements MatrixInterface {
 	
 	/**
 	 * Copy-Constructor.
-	 * Takes the Matrix from the argument and copies the contents
-	 * into the current Matrix.
-	 * @param other Matrix to be copied.
+	 * Takes the Matrix from the argument and make a deep copy of the contents.
+	 * @param arg0 Matrix to be copied.
 	 */
-	public Matrix(Matrix other) {
-		rows = other.getRows();
-		cols = other.getCols();
+	public Matrix(Matrix arg0) {
+		rows = arg0.getRows();
+		cols = arg0.getCols();
 		this.matrix = new int[getRows()][getCols()];
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
-				setAtIndex(i, j, other.getAtIndex(i, j));
+				setAtIndex(i, j, arg0.getAtIndex(i, j));
 			}
 		}
 	}
@@ -85,57 +84,57 @@ public class Matrix implements MatrixInterface {
 		
 	}
 
-	public Matrix add(Matrix other) throws IllegalArgumentException {
-		if(getRows() == other.getRows() && getCols() == other.getCols()) {
+	public Matrix add(Matrix arg0) throws IllegalArgumentException {
+		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
 			Matrix temp = new Matrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < getCols(); j++) {
-					temp.setAtIndex(i, j, this.getAtIndex(i, j) + other.getAtIndex(i, j));
+					temp.setAtIndex(i, j, this.getAtIndex(i, j) + arg0.getAtIndex(i, j));
 				}
 			}
 			return temp;
 		}
 		else {
 			throw(new IllegalArgumentException("\nCannot add matrices with dimesnions of "
-					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ getRows() + "x" + getCols() + " and " + arg0.getRows() + "x" + arg0.getCols()
 					+ ".\nTry different matrices where all dimensions match."));
 		}
 	}
 
-	public Matrix subtract(Matrix other) throws IllegalArgumentException {
-		if(getRows() == other.getRows() && getCols() == other.getCols()) {
+	public Matrix subtract(Matrix arg0) throws IllegalArgumentException {
+		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
 			Matrix temp = new Matrix(getRows(), getCols());
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < getCols(); j++) {
-					temp.setAtIndex(i, j, this.getAtIndex(i, j) - other.getAtIndex(i, j));
+					temp.setAtIndex(i, j, this.getAtIndex(i, j) - arg0.getAtIndex(i, j));
 				}
 			}
 			return temp;
 		}
 		else {
 			throw(new IllegalArgumentException("\nCannot subtract matrices with dimesnions of "
-					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ getRows() + "x" + getCols() + " and " + arg0.getRows() + "x" + arg0.getCols()
 					+ ".\nTry different matrices where all dimensions match."));
 		}
 	}
 	
-	public Matrix multiply(int value) {
+	public Matrix multiply(int scalar) {
 		Matrix temp = new Matrix(this);
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
-				temp.setAtIndex(i, j, getAtIndex(i, j) * value);
+				temp.setAtIndex(i, j, getAtIndex(i, j) * scalar);
 			}
 		}
 		return temp;
 	}
 	
-	public Matrix multiply(Matrix other) throws IllegalArgumentException {
-		if(getCols() == other.getRows()) {
-			Matrix temp = new Matrix(getRows(), other.getCols());
+	public Matrix multiply(Matrix arg0) throws IllegalArgumentException {
+		if(getCols() == arg0.getRows()) {
+			Matrix temp = new Matrix(getRows(), arg0.getCols());
 			for(int i = 0; i < getRows(); i++) {
-				for(int j = 0; j < other.getCols(); j++) {
+				for(int j = 0; j < arg0.getCols(); j++) {
 					for(int k = 0; k < getCols(); k++) {
-						temp.setAtIndex(i, j, temp.getAtIndex(i, j) + (getAtIndex(i, k) * other.getAtIndex(k, j)));
+						temp.setAtIndex(i, j, temp.getAtIndex(i, j) + (getAtIndex(i, k) * arg0.getAtIndex(k, j)));
 					}
 				}
 			}
@@ -143,7 +142,7 @@ public class Matrix implements MatrixInterface {
 		}
 		else {
 			throw(new IllegalArgumentException("\nCannot multiply matrices with dimesnions of "
-					+ getRows() + "x" + getCols() + " and " + other.getRows() + "x" + other.getCols()
+					+ getRows() + "x" + getCols() + " and " + arg0.getRows() + "x" + arg0.getCols()
 					+ ".\nTry different matrices where the columns of the first \nmatch the rows of the second."));
 		}
 	}
@@ -158,28 +157,28 @@ public class Matrix implements MatrixInterface {
 		return temp;
 	}
 
-	public int compareTo(Matrix other) {
+	public int compareTo(Matrix arg0) {
 		int diff = 0;
-		if(getRows() != other.getRows())
+		if(getRows() != arg0.getRows())
 			return Integer.MIN_VALUE;
-		else if(getCols() != other.getCols())
+		else if(getCols() != arg0.getCols())
 			return Integer.MAX_VALUE;
 		else {
 			for(int i = 0; i < getRows(); i++) {
 				for(int j = 0; j < getCols(); j++) {
-					diff += getAtIndex(i, j) - other.getAtIndex(i, j);
+					diff += getAtIndex(i, j) - arg0.getAtIndex(i, j);
 				}
 			}
 		}
 		return diff;
 	}
 
-	public boolean equals(Matrix other) {
-		if(getRows() != other.getRows() && getCols() != other.getCols())
+	public boolean equals(Matrix arg0) {
+		if(getRows() != arg0.getRows() && getCols() != arg0.getCols())
 			return false;
 		for(int i = 0; i < getRows(); i++) {
 			for(int j = 0; j < getCols(); j++) {
-				if(getAtIndex(i, j) != other.getAtIndex(i, j))
+				if(getAtIndex(i, j) != arg0.getAtIndex(i, j))
 					return false;
 			}
 		}
