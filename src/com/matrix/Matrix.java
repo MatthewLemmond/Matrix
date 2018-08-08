@@ -65,20 +65,20 @@ public class Matrix implements MatrixInterface {
 		return this.cols;
 	}
 
-	public void setAtIndex(int row, int col, int value) throws IndexOutOfBoundsException {
-		if(row < getRows() && col < getCols())
+	public void setAtIndex(int row, int col, int value) throws ArrayIndexOutOfBoundsException {
+		if(row >= 0 && row < getRows() && col >= 0 && col < getCols())
 			this.matrix[row][col] = value;
 		else
-			throw(new IndexOutOfBoundsException("Index Out of Bounds"
+			throw(new ArrayIndexOutOfBoundsException("Index Out of Bounds"
 					+ "\nCheck that your values for row and col are correct"
 					+ " and try again."));
 	}
 
-	public int getAtIndex(int row, int col) {
-		if(row < getRows() && col < getCols())
+	public int getAtIndex(int row, int col) throws ArrayIndexOutOfBoundsException {
+		if(row >= 0 && row < getRows() && col >= 0 && col < getCols())
 			return this.matrix[row][col];
 		else
-			throw(new IndexOutOfBoundsException("Index Out of Bounds"
+			throw(new ArrayIndexOutOfBoundsException("Index Out of Bounds"
 					+ "\nCheck that your values for row and col are correct"
 					+ " and try again."));
 		

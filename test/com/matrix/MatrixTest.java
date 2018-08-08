@@ -84,11 +84,11 @@ public class MatrixTest {
 	}
 	
 	@Test public void getAtIndexExceptionTest() {
-		Throwable e = assertThrows(IndexOutOfBoundsException.class, () -> a.getAtIndex(100, 0));
+		Throwable e = assertThrows(ArrayIndexOutOfBoundsException.class, () -> a.getAtIndex(100, 0));
 		assertEquals(("Index Out of Bounds"
 				+ "\nCheck that your values for row and col are correct"
 				+ " and try again."), e.getMessage());
-		e = assertThrows(IndexOutOfBoundsException.class, () -> a.getAtIndex(0, 100));
+		e = assertThrows(ArrayIndexOutOfBoundsException.class, () -> a.getAtIndex(0, 100));
 		assertEquals(("Index Out of Bounds"
 				+ "\nCheck that your values for row and col are correct"
 				+ " and try again."), e.getMessage());
@@ -101,11 +101,11 @@ public class MatrixTest {
 	}
 	
 	@Test public void setAtIndexExceptionTest() {
-		Throwable e = assertThrows(IndexOutOfBoundsException.class, () -> a.setAtIndex(100, 0, 0));
+		Throwable e = assertThrows(ArrayIndexOutOfBoundsException.class, () -> a.setAtIndex(100, 0, 0));
 		assertEquals(("Index Out of Bounds"
 				+ "\nCheck that your values for row and col are correct"
 				+ " and try again."), e.getMessage());
-		e = assertThrows(IndexOutOfBoundsException.class, () -> a.setAtIndex(0, 100, 0));
+		e = assertThrows(ArrayIndexOutOfBoundsException.class, () -> a.setAtIndex(0, 100, 0));
 		assertEquals(("Index Out of Bounds"
 				+ "\nCheck that your values for row and col are correct"
 				+ " and try again."), e.getMessage());
