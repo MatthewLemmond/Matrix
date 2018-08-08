@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class IntegerMatrixTest {
+public class MatrixTest {
 	
 	private IntegerMatrix constructorTester;
 	private IntegerMatrix setAtIndexTester;
@@ -69,18 +69,18 @@ public class IntegerMatrixTest {
 		constructorTester = new IntegerMatrix(arr);
 		assertEquals(constructorTester.getRows(), 2);
 		assertEquals(constructorTester.getCols(), 3);
-		assertEquals(constructorTester.getAtIndex(0, 0), 1);
+		assert(constructorTester.getAtIndex(0, 0) == 1);
 	}
 	
 	@Test public void constructorWithMatrixArgumentTest() {
 		constructorTester = new IntegerMatrix(c);
 		assertEquals(3, constructorTester.getRows());
 		assertEquals(1, constructorTester.getCols());
-		assertEquals(10, constructorTester.getAtIndex(0, 0));
+		assert(10 == constructorTester.getAtIndex(0, 0));
 	}
 	
 	@Test public void getAtIndexTest() {
-		assertEquals(2, a.getAtIndex(0, 2));
+		assert(2 == a.getAtIndex(0, 2));
 	}
 	
 	@Test public void getAtIndexExceptionTest() {
@@ -97,7 +97,7 @@ public class IntegerMatrixTest {
 	@Test public void setAtIndexTest() {
 		setAtIndexTester = new IntegerMatrix();
 		setAtIndexTester.setAtIndex(0, 0, 1);
-		assertEquals(setAtIndexTester.getAtIndex(0, 0), 1);
+		assert(setAtIndexTester.getAtIndex(0, 0) == 1);
 	}
 	
 	@Test public void setAtIndexExceptionTest() {

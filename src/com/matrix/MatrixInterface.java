@@ -1,6 +1,6 @@
 package com.matrix;
 
-public interface MatrixInterface {
+public interface MatrixInterface<T extends Number> {
 	
 	/**
 	 * @return int The number of rows in the Matrix.
@@ -19,7 +19,7 @@ public interface MatrixInterface {
 	 * @param col The col at which to place the value.
 	 * @param value The value to be set at that location.
 	 */
-	public void setAtIndex(int row, int col, int value);
+	public void setAtIndex(int row, int col, T value) throws ArrayIndexOutOfBoundsException;
 	
 	/**
 	 * Gets the value from the corresponding index.
@@ -28,7 +28,7 @@ public interface MatrixInterface {
 	 * @param col Col from which to get the value.
 	 * @return int Value from the corresponding row, column pair.
 	 */
-	public int getAtIndex(int row, int col);
+	public T getAtIndex(int row, int col) throws ArrayIndexOutOfBoundsException;
 	
 	/**
 	 * Add two matrices together.
@@ -36,7 +36,7 @@ public interface MatrixInterface {
 	 * @param other The matrix to add to the calling matrix.
 	 * @return Matrix The resulting matrix after the addition.
 	 */
-	public IntegerMatrix add(IntegerMatrix other);
+	public Matrix<T> add(Matrix<T> arg0);
 	
 	/**
 	 * Subtract one matrix from the other.
@@ -44,14 +44,14 @@ public interface MatrixInterface {
 	 * @param other The matrix to subtract from the calling matrix.
 	 * @return Matrix The resulting matrix after the subtraction.
 	 */
-	public IntegerMatrix subtract(IntegerMatrix other);
+	public Matrix<T> subtract(Matrix<T> arg0);
 	
 	/**
 	 * Multiply the contents of the calling matrix by the value passed in.
 	 * @param value Value to scale the contents of the matrix by.
 	 * @return Matrix The resulting matrix after the scaling.
 	 */
-	public IntegerMatrix multiply(int value);
+	public Matrix<T> multiply(int scalar);
 	
 	/**
 	 * Multiply two matrices together.
@@ -59,27 +59,27 @@ public interface MatrixInterface {
 	 * @param other The matrix to multiply to the calling matrix.
 	 * @return Matrix The resulting matrix after the multiplication.
 	 */
-	public IntegerMatrix multiply(IntegerMatrix other);
+	public Matrix<T> multiply(Matrix<T> arg0);
 	
 	/**
 	 * Transpose the calling matrix.
 	 * @return Matrix The resulting matrix after transposition.
 	 */
-	public IntegerMatrix transpose();
+	public Matrix<T> transpose();
 	
 	/**
 	 * Compare two matrices together and return an integer to signify their difference.
 	 * @param other The matrix to compare against the calling matrix.
 	 * @return int The result of the comparison.
 	 */
-	public int compareTo(IntegerMatrix other);
+	public int compareTo(Matrix<T> other);
 	
 	/**
 	 * Determine if two matrices are equal to one another.
 	 * @param other The matrix to check equality against the calling matrix.
 	 * @return boolean True or false depending on the equality of the matrices.
 	 */
-	public boolean equals(IntegerMatrix other);
+	public boolean equals(Matrix<T> other);
 	
 	/**
 	 * @return String A textual representation of the matrix.

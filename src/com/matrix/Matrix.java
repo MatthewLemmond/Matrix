@@ -1,19 +1,32 @@
 package com.matrix;
 
-public abstract class Matrix implements MatrixInterface {
+public abstract class Matrix<T extends Number> implements MatrixInterface<T> {
 	private int rows;
 	private int cols;
 	
+	/**
+	 * Initializes the Matrix to be 3x3 in size.
+	 */
 	public Matrix() {
 		this.rows = 3;
 		this.cols = 3;
 	}
 	
+	/**
+	 * Initialize the Matrix to be a square matrix
+	 * based on the integer given.
+	 * @param rowsAndCols Value to be used for both number of rows and number of cols.
+	 */
 	public Matrix(int rowsAndCols) {
 		this.rows = rowsAndCols;
 		this.cols = rowsAndCols;
 	}
-	
+
+	/**
+	 * Initializes the Matrix to be (rows)x(cols) in size.
+	 * @param rows Number of rows in the matrix.
+	 * @param cols Number of cols in the matrix.
+	 */
 	public Matrix(int rows, int cols) {
 		this.rows = rows;
 		this.cols = cols;
@@ -34,58 +47,8 @@ public abstract class Matrix implements MatrixInterface {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
-	
-	public IntegerMatrix add(IntegerMatrix arg0) throws IllegalArgumentException {
-		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
-			IntegerMatrix temp = new IntegerMatrix(getRows(), getCols());
-			for(int i = 0; i < getRows(); i++) {
-				for(int j = 0; j < getCols(); j++) {
-					temp.setAtIndex(i, j, this.getAtIndex(i, j) + arg0.getAtIndex(i, j));
-				}
-			}
-			return temp;
-		}
-		else {
-			throw(new IllegalArgumentException("\nCannot add matrices with dimesnions of "
-					+ getRows() + "x" + getCols() + " and " + arg0.getRows() + "x" + arg0.getCols()
-					+ ".\nTry different matrices where all dimensions match."));
-		}
-	}
 
-	public IntegerMatrix subtract(IntegerMatrix arg0) throws IllegalArgumentException {
-		if(getRows() == arg0.getRows() && getCols() == arg0.getCols()) {
-			IntegerMatrix temp = new IntegerMatrix(getRows(), getCols());
-			for(int i = 0; i < getRows(); i++) {
-				for(int j = 0; j < getCols(); j++) {
-					temp.setAtIndex(i, j, this.getAtIndex(i, j) - arg0.getAtIndex(i, j));
-				}
-			}
-			return temp;
-		}
-		else {
-			throw(new IllegalArgumentException("\nCannot subtract matrices with dimesnions of "
-					+ getRows() + "x" + getCols() + " and " + arg0.getRows() + "x" + arg0.getCols()
-					+ ".\nTry different matrices where all dimensions match."));
-		}
-	}
-
-	public int compareTo(IntegerMatrix arg0) {
-		int diff = 0;
-		if(getRows() != arg0.getRows())
-			return Integer.MIN_VALUE;
-		else if(getCols() != arg0.getCols())
-			return Integer.MAX_VALUE;
-		else {
-			for(int i = 0; i < getRows(); i++) {
-				for(int j = 0; j < getCols(); j++) {
-					diff += getAtIndex(i, j) - arg0.getAtIndex(i, j);
-				}
-			}
-		}
-		return diff;
-	}
-
-	public boolean equals(IntegerMatrix arg0) {
+	public boolean equals(Matrix<T> arg0) {
 		if(getRows() != arg0.getRows() && getCols() != arg0.getCols())
 			return false;
 		for(int i = 0; i < getRows(); i++) {
