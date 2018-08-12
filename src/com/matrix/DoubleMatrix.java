@@ -7,7 +7,7 @@ public class DoubleMatrix extends Matrix<Double> implements MatrixInterface<Doub
 		super();
 		initArr();
 	}
-	
+
 	public DoubleMatrix(int rowsAndCols) {
 		super(rowsAndCols);
 		initArr();

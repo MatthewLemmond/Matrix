@@ -11,7 +11,7 @@ public abstract class Matrix<T extends Number> implements MatrixInterface<T> {
 		this.rows = 3;
 		this.cols = 3;
 	}
-	
+
 	/**
 	 * Initialize the Matrix to be a square matrix
 	 * based on the integer given.
