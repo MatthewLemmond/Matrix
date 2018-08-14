@@ -36,7 +36,7 @@ public interface MatrixInterface<T extends Number> {
 	 * @param other The matrix to add to the calling matrix.
 	 * @return Matrix The resulting matrix after the addition.
 	 */
-	public Matrix<T> add(Matrix<T> arg0);
+	public Matrix<T> add(Matrix<T> arg0) throws IllegalArgumentException;
 	
 	/**
 	 * Subtract one matrix from the other.
@@ -44,7 +44,7 @@ public interface MatrixInterface<T extends Number> {
 	 * @param other The matrix to subtract from the calling matrix.
 	 * @return Matrix The resulting matrix after the subtraction.
 	 */
-	public Matrix<T> subtract(Matrix<T> arg0);
+	public Matrix<T> subtract(Matrix<T> arg0) throws IllegalArgumentException;
 	
 	/**
 	 * Multiply the contents of the calling matrix by the value passed in.
@@ -59,7 +59,7 @@ public interface MatrixInterface<T extends Number> {
 	 * @param other The matrix to multiply to the calling matrix.
 	 * @return Matrix The resulting matrix after the multiplication.
 	 */
-	public Matrix<T> multiply(Matrix<T> arg0);
+	public Matrix<T> multiply(Matrix<T> arg0) throws IllegalArgumentException;
 	
 	/**
 	 * Transpose the calling matrix.
@@ -72,14 +72,14 @@ public interface MatrixInterface<T extends Number> {
 	 * @param other The matrix to compare against the calling matrix.
 	 * @return int The result of the comparison.
 	 */
-	public int compareTo(Matrix<T> other);
+	public int compareTo(Matrix<T> other) throws IllegalArgumentException;
 	
 	/**
 	 * Determine if two matrices are equal to one another.
 	 * @param other The matrix to check equality against the calling matrix.
 	 * @return boolean True or false depending on the equality of the matrices.
 	 */
-	public boolean equals(Matrix<T> other);
+	public boolean equals(Matrix<T> other) throws IllegalArgumentException;
 	
 	/**
 	 * @return String A textual representation of the matrix.

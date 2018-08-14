@@ -4,7 +4,7 @@ package com.matrix;
  * Implementation of the MatrixInterface using integer values within the matrix itself.
  * @author Matthew Lemmond
  */
-public class IntegerMatrix extends Matrix<Integer> implements MatrixInterface<Integer> {
+public class IntegerMatrix extends Matrix<Integer> {
 	private int[][] matrix;
 
 	public IntegerMatrix() {

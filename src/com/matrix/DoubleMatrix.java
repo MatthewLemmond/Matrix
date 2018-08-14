@@ -1,6 +1,6 @@
 package com.matrix;
 
-public class DoubleMatrix extends Matrix<Double> implements MatrixInterface<Double> {
+public class DoubleMatrix extends Matrix<Double> {
 	private double[][] matrix;
 	
 	public DoubleMatrix() {
