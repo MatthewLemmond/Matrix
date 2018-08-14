@@ -20,6 +20,8 @@ public class MatrixTest {
 	public static IntegerMatrix twoMatrix;
 	public static IntegerMatrix aTimesB;
 	public static IntegerMatrix transposedC;
+	public static IntegerMatrix integerIdentity3;
+	public static DoubleMatrix doubleIdentity3;
 	
 	@BeforeAll public static void initialize() throws InterruptedException {
 		diffRows = new IntegerMatrix(4,3);
@@ -50,6 +52,10 @@ public class MatrixTest {
 		aTimesB = new IntegerMatrix(aTimesBArr);
 		int[][] transposedArr = {{10,11,12}};
 		transposedC = new IntegerMatrix(transposedArr);
+		int[][] integerIdentityArr = {{1,0,0},{0,1,0},{0,0,1}};
+		integerIdentity3 = new IntegerMatrix(integerIdentityArr);
+		double[][] doubleIdentityArr = {{1.0,0,0},{0,1.0,0},{0,0,1.0}};
+		doubleIdentity3 = new DoubleMatrix(doubleIdentityArr);
 	}
 	
 	@Test public void constructorTest() {
@@ -178,5 +184,16 @@ public class MatrixTest {
 	@Test public void toStringTest() {
 		assertEquals("[0 0 0]\n[0 0 0]\n[0 0 0]", zeroMatrix.toString());
 	}
-
+	
+	@Test public void integerArgumentIdentityMatrixTest() {
+		assertEquals(true, integerIdentity3.equals(MatrixOperations.identityMatrix(integerIdentity3.getRows())));
+	}
+	
+	@Test public void integerMatrixArgumentIdentityMatrixTest() {
+		assertEquals(true, integerIdentity3.equals(MatrixOperations.identityMatrix(integerIdentity3)));
+	}
+	
+	@Test public void doubleMatrixArgumentIdentityMatrixTest() {
+		assertEquals(true, doubleIdentity3.equals(MatrixOperations.identityMatrix(doubleIdentity3)));
+	}
 }

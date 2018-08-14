@@ -3,7 +3,6 @@ package com.matrix;
 public abstract class Matrix<T extends Number> implements MatrixInterface<T> {
 	private int rows;
 	private int cols;
-	
 	/**
 	 * Initializes the Matrix to be 3x3 in size.
 	 */
@@ -51,10 +50,36 @@ public abstract class Matrix<T extends Number> implements MatrixInterface<T> {
 	public boolean equals(Matrix<T> arg0) {
 		if(getRows() != arg0.getRows() && getCols() != arg0.getCols())
 			return false;
-		for(int i = 0; i < getRows(); i++) {
-			for(int j = 0; j < getCols(); j++) {
-				if(getAtIndex(i, j) != arg0.getAtIndex(i, j))
-					return false;
+		if(this.getClass() == IntegerMatrix.class && arg0.getClass() == IntegerMatrix.class) {
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					if(getAtIndex(i, j).intValue() != arg0.getAtIndex(i, j).intValue())
+						return false;
+				}
+			}
+		}
+		else if(this.getClass() == DoubleMatrix.class && arg0.getClass() == DoubleMatrix.class) {
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					if(getAtIndex(i, j).doubleValue() != arg0.getAtIndex(i, j).doubleValue())
+						return false;
+				}
+			}
+		}
+		else if(this.getClass() == IntegerMatrix.class && arg0.getClass() == DoubleMatrix.class) {
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					if(getAtIndex(i, j).intValue() != arg0.getAtIndex(i, j).doubleValue())
+						return false;
+				}
+			}
+		}
+		else if(this.getClass() == DoubleMatrix.class && arg0.getClass() == IntegerMatrix.class) {
+			for(int i = 0; i < getRows(); i++) {
+				for(int j = 0; j < getCols(); j++) {
+					if(getAtIndex(i, j).doubleValue() != arg0.getAtIndex(i, j).intValue())
+						return false;
+				}
 			}
 		}
 		return true;
